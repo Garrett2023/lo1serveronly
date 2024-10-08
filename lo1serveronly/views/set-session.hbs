@@ -1,0 +1,33 @@
+<form action="/state/session" method="post">
+    <h1>{{ title }}</h1>
+    <div class="mb-2">
+        <label for="name" class="form-label">Session Name:</label>
+        <input type="text" class="form-control" value="{{postedValues.name}}"
+               placeholder="Enter Session name" name="name" id="name" required/>
+    </div>
+    <div class="mb-2">
+        <label for="value" class="form-label">Session Value:</label>
+        <input type="text" class="form-control " value="{{postedValues.value}}"
+               placeholder="Enter Session value" name="value" id="value" required/>
+    </div>
+    <div class="mb-2">
+        <label for="expiry" class="form-label">Session Category: (Optional) </label>
+        <input type="text" class="form-control " value="{{postedValues.category}}"
+               placeholder="Enter Session Category" name="category" id="category"  />
+    </div>
+    <button type="submit" name="purpose" value="add" class="btn btn-primary">Submit</button>
+</form>
+<form action="/state/session" method="post">
+    <button type="submit" name="purpose" value="regenerate" class="btn btn-primary">Regenerate Session</button>
+    <button type="submit" name="purpose" value="destroy" class="btn btn-primary">Destroy Session</button>
+</form>
+<div class="card p-2">
+    <h2>Session: {{sessionID}}</h2>
+    <code><pre>{{activeSession}}</pre></code>
+</div>
+<div class="card p-2 mb-2">
+    <h2>Posted values</h2>
+    {{#each postedValues}}
+        <p class="col-md-8 fs-4">{{@key}}: {{this}}</p>
+    {{/each}}
+</div>

@@ -1,0 +1,43 @@
+<form action="/examples/form/" method="get" novalidate>
+    <h1>{{ title }}</h1>
+
+    <div class="mb-2">
+        <label for="email" class="form-label">Email:</label>
+        <!--IMPORTANT the input tag MUST have a name attribute to post to the server ie. name="email"-->
+        <input type="email" class="form-control {{#if err.email}}is-invalid{{/if}}"
+               placeholder="Enter email" name="email" id="email" value="{{submittedEmail}}" required/>
+        <div class="invalid-feedback">{{err.email}}</div>
+    </div>
+
+    <div class="mb-2">
+        <label for="pwd" class="form-label">Password:</label>
+        <input type="password" class="form-control {{#if err.pwd}}is-invalid{{/if}}"
+               placeholder="Enter password" name="pwd" id="pwd" required/>
+        <div class="invalid-feedback">{{err.pwd}}</div>
+    </div>
+
+    <div class="mb-2">
+        <label for="phone" class="form-label">Phone:</label>
+        <input type="tel" class="form-control  {{#if err.phone}}is-invalid{{/if}}"
+               placeholder="Enter phone" name="phone" id="phone" value="{{submittedPhone}}" required/>
+        <div class="invalid-feedback">{{err.phone}}</div>
+    </div>
+
+    <div class="form-check mb-2">
+        <input class="form-check-input {{#if err.agreed}}is-invalid{{/if}}"
+               type="checkbox" id="agreed" name="agreed" value="yes"  {{#if isSubmitted}}checked{{/if}}/>
+        <label for="agreed" class="form-check-label">I agree to the terms and conditions.</label>
+        <div class="invalid-feedback">{{err.agreed}}</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{#if isSubmitted}}
+    <div class="card p-2">
+        <h2>Submitted values</h2>
+        <p>Email: {{submittedEmail}}</p>
+        <p>Password: {{submittedPassword}}</p>
+        <p>Phone: {{submittedPhone}}</p>
+        <p>Agreed: {{submittedAgreed}}</p>
+    </div>
+{{/if}}
