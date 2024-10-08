@@ -1,0 +1,53 @@
+<form action="/state/cookie" method="post">
+    <h1>{{ title }}</h1>
+    <div class="mb-2">
+        <label for="name" class="form-label">Cookie Name:</label>
+        <input type="text" class="form-control "
+               placeholder="Enter cookie name" name="name" id="name" value="{{postedValues.name}}" required/>
+    </div>
+    <div class="mb-2">
+        <label for="value" class="form-label">Cookie Value:</label>
+        <input type="text" class="form-control "
+               placeholder="Enter cookie value" name="value" id="value"  value="{{postedValues.value}}" required/>
+    </div>
+    <div class="mb-2">
+        <label for="expiry" class="form-label">
+            Cookie Expiry: (Integer in seconds, -1 to expire cookie)
+        </label>
+        <input type="number" class="form-control "
+               placeholder="Enter cookie expiry in seconds" name="expiry" id="expiry"  value="{{postedValues.expiry}}" required/>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="hide" name="hide" value="yes"
+               {{#if postedValues.hide}}checked{{/if}}>
+        <label class="form-check-label" for="hide">Hide cookie from javascript</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<form action="/state/cookie" method="post">
+    <button type="submit" name="clear" value="clear" class="btn btn-primary">Clear all Cookies</button>
+</form>
+<div class="card p-2 mb-2">
+    <h2>Posted values</h2>
+    {{#each postedValues}}
+        <p class="col-md-8 fs-4">{{@key}}: {{this}}</p>
+    {{/each}}
+</div>
+<div class="card p-2">
+    <h2>Cookies Sent to Server</h2>
+    {{#each activeCookies}}
+        <p class="col-md-8 fs-4">{{@key}}: {{this}}</p>
+    {{/each}}
+</div>
+<div class="card p-2">
+    <h2>Cookies Available to Javascript</h2>
+    <script type="text/javascript">
+        let keyVals = document.cookie.split(';');
+        keyVals.forEach( item=>{
+            let  line = item.split('=');
+            if(line.length===2) {
+                document.writeln(`<p  class="col-md-8 fs-4"> ${line[0]}:  ${line[1]}</p>`);
+            }
+        });
+    </script>
+</div>

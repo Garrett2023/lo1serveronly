@@ -1,0 +1,17 @@
+<div class="p-5 mb-4 bg-gradient rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">{{title}}</h1>
+        <!--   loop through the token payload object to display the properties and values-->
+        {{#each payload}}
+            <p class="col-md-8 fs-4">{{@key}}: {{this}}</p>
+        {{/each}}
+        <!--   Only show button if action is specified-->
+        {{#if action}}
+            <form action="{{action}}" method="post">
+                <!--        pass the JWT as a value in a hidden input-->
+                <input type="hidden" name="access_token" value="{{token}}"/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        {{/if}}
+    </div>
+</div>

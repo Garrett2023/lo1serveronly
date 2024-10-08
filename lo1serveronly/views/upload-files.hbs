@@ -1,0 +1,43 @@
+<form action="/examples/upload/" method="post" enctype="multipart/form-data" novalidate>
+    <h1>{{ title }}</h1>
+    <div class="form-group">
+        <label for="title1">File 1 Title:</label>
+        <input type="text" class="form-control" placeholder="Enter file title" name="title1" id="title1"/>
+    </div>
+    <div class="form-group">
+        <label for="file1">File 1:</label>
+        <input type="file" class="form-control" placeholder="Select file"
+               name="file1" id="file1"/>
+    </div>
+    <div class="form-group">
+        <label for="desc1">File 1 Description:</label>
+        <textarea class="form-control" placeholder="Enter file description"
+                  name="desc1" id="desc1" rows="3"></textarea>
+    </div>
+    <div class="form-group mt-2">
+        <label for="title2">File 2 Title:</label>
+        <input type="text" class="form-control" placeholder="Enter file title" name="title2" id="title2"/>
+    </div>
+    <div class="form-group">
+        <label for="file2">File 2:</label>
+        <input type="file" class="form-control" placeholder="Select file"
+               name="file2" id="file2"/>
+    </div>
+    <div class="form-group">
+        <label for="desc2">File 2 Description:</label>
+        <textarea class="form-control" placeholder="Enter file description"
+                  name="desc2" id="desc2" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{#if isSubmitted}}
+    <div class="card p-2">
+        <h2>Submitted Files and Description</h2>
+        <p>File 1 Title: {{title1}}</p>
+        <p>File 1: {{file1.originalname}}</p>
+        <p>File 1 Description: {{desc1}}</p>
+        <p class="mt-2">File 2 Title: {{title2}}</p>
+        <p>File 2: {{file2.originalname}}</p>
+        <p>File 2 Description: {{desc2}}</p>
+    </div>
+{{/if}}
